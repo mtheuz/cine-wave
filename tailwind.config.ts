@@ -8,6 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors:{
+        'blue-primary': '#000625',
+        'blue-secondary' : '#000937',
+        'font-logo' : '#0592C6'
+      },
+      height:{
+        'section-height' : '48rem',
+        'header-height' : '6.25rem'
+      },
+      maxWidth:{
+        'header-maxWidht' : '83rem'
+      }
 
     },
   },

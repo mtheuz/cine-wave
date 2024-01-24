@@ -18,7 +18,7 @@ const config: Config = {
         'header-height' : '5rem'
       },
       maxWidth:{
-        'header-maxWidht' : '83rem'
+        'header-maxWidht' : '90rem'
       }
 
     },

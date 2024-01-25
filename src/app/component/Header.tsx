@@ -23,7 +23,7 @@ function Header() {
   };
   return (
     <>
-      <header className="fixed w-full">
+      <header className="fixed w-full z-10">
         <nav className="flex px-4 justify-between bg-blue-secondary  h-20  rounded-b-2xl drop-shadow-xl items-center ">
           <div className="flex items-center">
             <div className="flex items-center ">
@@ -72,7 +72,7 @@ function Header() {
         </nav>
         {isVisible ? (
           <nav className="-mt-4">
-            <header className="w-full bg-font-logo">
+            <nav className="w-full bg-font-logo">
               <LinkItem
                 nome={"FILMES"}
                 className="flex md:hidden hover:bg-blue-primary pt-6"
@@ -94,7 +94,7 @@ function Header() {
               >
                 <FaStar color="white" size={18} />
               </LinkItem>
-            </header>
+            </nav>
           </nav>
         ) : (
           true

@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 }
 function Container({ children, className }: Props) {
-  const defaultClass = "w-full px-3 mx-auto max-w-grid";
+  const defaultClass = "w-full px-5 mx-auto max-w-grid pt-24";
   const clasNameFinal = twMerge(defaultClass, className);
   return <div className={clasNameFinal}>{children}</div>;
 }

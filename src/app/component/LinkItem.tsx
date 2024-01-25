@@ -4,16 +4,20 @@ import { twMerge } from "tailwind-merge";
 type Props = {
     nome : string,
     children: React.ReactNode,
-    className ?: string
+    className ?: string,
+    mobile ?: boolean
 
 }
-function LinkItem({nome,children, className} : Props) {
-    const defaultClass = "flex text-sm py-2 items-start justify-center gap-2  border-b-2  border-transparent hover:border-white rounded transition duration-700 active:bg-blue-800";
+function LinkItem({nome,children, className, mobile} : Props) {
+    const defaultClass = "flex text-sm p-2 items-start justify-center gap-1  border-b-2  border-transparent hover:border-white rounded transition duration-700 active:bg-blue-800";
     const clasNameFinal = twMerge(defaultClass, className);
+    let MobileMenu = "text-white flex md:hidden"
+    let DesktopMenu = "text-white hidden md:flex"
+    const responsive = mobile ? MobileMenu : DesktopMenu
   return (
     <div className={clasNameFinal}>
       {children}
-      <Link href={"#"} className="text-white hidden md:flex">
+      <Link href={"#"} className={responsive}>
         {nome}
       </Link>
     </div>

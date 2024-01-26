@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
+import { getMoviesNow } from "@/api/api";
 
 import {
   Parallax,
@@ -11,8 +12,13 @@ import {
   Pagination,
   Scrollbar,
 } from "swiper/modules";
+import ImageCard from "./ImageCard";
 
 function SectionHome() {
+  const [moviesNow, setMoviesNow] = useState([]);
+  useEffect(() => {
+    getMoviesNow().then((response) => setMoviesNow(response.results));
+  }, []);
   return (
     <section className="bg-blue-primary h-section-height">
       <Container>
@@ -24,26 +30,18 @@ function SectionHome() {
             delay: 2500,
             disableOnInteraction: false,
           }}
-          pagination={{
-            clickable: true,
-          }}
+         
           slidesPerView={1}
-          navigation
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
+          //navigation
         >
-          <SwiperSlide>
-            <div className="w-full bg-slate-700 h-48 rounded-xl"></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full bg-slate-700 h-48 rounded-xl"></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full bg-slate-700 h-48 rounded-xl"></div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full bg-slate-700 h-48 rounded-xl"></div>
-          </SwiperSlide>
+          
+            {moviesNow.map((movie: any, index: number) => (
+              
+              <SwiperSlide key={index}>
+              <ImageCard  pathBanner={movie.backdrop_path} />
+              </SwiperSlide>
+            ))}
+          
         </Swiper>
       </Container>
     </section>

@@ -7,7 +7,7 @@ type Props = {
 function ImageCard({ pathBanner }: Props) {
   const ImageURL = "https://image.tmdb.org/t/p/original";
   return (
-    <div className=" w-auto h-40  md:h-[500px] md:w-full bg-center relative">
+    <div className=" w-auto h-52  md:h-[500px] md:w-full relative">
       <Image
         layout="fill"
         objectFit="cover"

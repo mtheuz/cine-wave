@@ -13,6 +13,7 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import ImageCard from "./ImageCard";
+import ListMoviesItem from "./ListMoviesItem";
 
 function SectionHome() {
   const [moviesNow, setMoviesNow] = useState([]);
@@ -25,30 +26,43 @@ function SectionHome() {
     getAllImagens(moviesNow).then((response) => console.log(response.results));
   }, [moviesNow]);
   return (
-    <section className="bg-blue-primary h-section-height">
-      <Container>
-        <Swiper
-          modules={[Parallax, Navigation, Pagination, Scrollbar, Autoplay]}
-          spaceBetween={50}
-          parallax={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          pagination={{ clickable: true }}
-          slidesPerView={1}
-          //navigation
-        >
-          
-            {moviesNow.slice(0,10).map((movie: any, index: number) => (
-              <SwiperSlide key={index}>
-              <ImageCard  pathBanner={movie.backdrop_path} />
+    <>
+      <section className="bg-blue-primary">
+        <Container>
+          <Swiper
+            modules={[Parallax, Navigation, Pagination, Scrollbar, Autoplay]}
+            spaceBetween={50}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            pagination={{ clickable: true }}
+            slidesPerView={1}
+            //navigation
+          >
+            {moviesNow.slice(0, 10).map((movie: any, index: number) => (
+              <SwiperSlide key={index} className="relative">
+                <div className="relative rounded-xl transition duration-300 delay-150 hover:cursor-pointer border-4 border-transparent hover:border-white ">
+                  <ImageCard pathBanner={movie.backdrop_path} />
+                  <div className="absolute p-2 text-white bottom-0 inset-0 bg-gradient-to-l from-transparent to-slate-950 rounded-md"></div>
+                  <div className="absolute bottom-0 left-0 text-white p-4 w-full md:w-1/2">
+                    <div className="md:text-4xl font-bold">{movie.title}</div>
+                    <div className="pl-1 text-md hidden md:flex">
+                      <p>{movie.overview}</p>
+                    </div>
+                  </div>
+                </div>
               </SwiperSlide>
             ))}
-          
-        </Swiper>
-      </Container>
-    </section>
+          </Swiper>
+          <div className="flex flex-wrap items-center mt-4 md:mt-8 justify-center">
+            {moviesNow.map((movie: any, index: number) => (
+              <ListMoviesItem key={index} movie={movie} />
+            ))}
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }
 

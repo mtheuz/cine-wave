@@ -23,7 +23,7 @@ function Header() {
   };
   return (
     <>
-      <header className="fixed w-full z-10">
+      <header className="fixed w-full z-20">
         <nav className="flex px-4 justify-between bg-blue-secondary  h-20  rounded-b-2xl drop-shadow-xl items-center ">
           <div className="flex items-center">
             <div className="flex items-center ">

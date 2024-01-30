@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import { getAllImagens, getMoviesNow } from "@/api/api";
+import { getAllImagens, getMoviesNow, getMoviesPopular, getMoviesTopRated, getMoviesUpcoming } from "@/api/api";
 
 import {
   Parallax,
@@ -15,12 +15,19 @@ import {
 import ImageCard from "./ImageCard";
 import ListMoviesItem from "./ListMoviesItem";
 import Link from "next/link";
+import MoviesForCategory from "./moviesForCategory";
 
 function SectionHome() {
   const [moviesNow, setMoviesNow] = useState([]);
+  const [moviesPopular, setMoiesPopular] = useState([]);
+  const [moviesTopRated, setmoviesTopRated] = useState([]);
+  const [moviesUpcoming, setmoviesUpcoming] = useState([]);
   const [allImagens, setAllImagens] = useState([]);
   useEffect(() => {
     getMoviesNow().then((response) => setMoviesNow(response.results));
+    getMoviesPopular().then((response) => setMoiesPopular(response.results));
+    getMoviesTopRated().then((response) => setmoviesTopRated(response.results));
+    getMoviesUpcoming().then((response) => setmoviesUpcoming(response.results));
   }, []);
 
   useEffect(() => {
@@ -58,11 +65,10 @@ function SectionHome() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="flex flex-wrap items-center mt-4 md:mt-8 justify-center">
-            {moviesNow.map((movie: any, index: number) => (
-              <ListMoviesItem key={index} movie={movie} />
-            ))}
-          </div>
+          <MoviesForCategory title="Em cartaz" movies={moviesNow}/>
+          <MoviesForCategory title="Popular" movies={moviesPopular}/>
+          <MoviesForCategory title="Melhor Avaliados" movies={moviesTopRated}/>
+          <MoviesForCategory title="Em breve" movies={moviesUpcoming}/>
         </Container>
       </section>
     </>

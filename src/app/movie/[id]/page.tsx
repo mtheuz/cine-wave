@@ -14,6 +14,19 @@ interface MovieDetails {
   vote_average: string;
   runtime: number;
 }
+const inverterOrdemData = (data: string) =>{
+    if (!data || typeof data !== 'string') {
+      return "Formato de data inválido";
+    }
+    const partesData = data.split('-');
+    
+    if (partesData.length !== 3) {
+      return "Formato de data inválido";
+    }
+    const dataInvertida = partesData.reverse().join('-');
+    return dataInvertida;
+  }
+
 function minutesToHours(minutes: number) {
   if (isNaN(minutes) || minutes < 0) {
     return "Formato de entrada inválido";
@@ -56,7 +69,7 @@ function Movie({ params }: { params: any }) {
     };
 
     fetchMovieDetails();
-  }, [params.id]); // Adicione params.id como dependência se necessário
+  }, [params.id]);
 
   return (
     <section className="bg-blue-primary bg-cover bg-top">
@@ -100,7 +113,7 @@ function Movie({ params }: { params: any }) {
                 <h1 className="text-base mr-2 font-bold">
                   Data de lançamento:{" "}
                 </h1>
-                <h2 className=" text-base ">{movie.release_date}</h2>
+                <h2 className=" text-base ">{inverterOrdemData(movie.release_date)}</h2>
               </div>
               <div className="flex flex-row text-yellow-400 z-10">
                 <h1 className="text-base mr-2 font-bold">Nota: </h1>

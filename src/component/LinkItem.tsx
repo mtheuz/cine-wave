@@ -17,7 +17,7 @@ function LinkItem({nome,children, className, mobile} : Props) {
   return (
     <div className={clasNameFinal}>
       {children}
-      <Link href={"#"} className={responsive}>
+      <Link href={"/"} className={responsive}>
         {nome}
       </Link>
     </div>

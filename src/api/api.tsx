@@ -14,6 +14,11 @@ export const getMoviesNow = async () =>
   .then(response => response.json())
   .catch(err => console.error(err));
 
+export const getMoviesDetails = async (id: number) =>
+  await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
+  .then(response => response.json())
+  .catch(err => console.error(err));
+
 export const getImagens = async (id: string) =>
   await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, options)
   .then(response => response.json())

@@ -14,6 +14,7 @@ import {
 } from "swiper/modules";
 import ImageCard from "./ImageCard";
 import ListMoviesItem from "./ListMoviesItem";
+import Link from "next/link";
 
 function SectionHome() {
   const [moviesNow, setMoviesNow] = useState([]);
@@ -42,16 +43,18 @@ function SectionHome() {
           >
             {moviesNow.slice(0, 10).map((movie: any, index: number) => (
               <SwiperSlide key={index} className="relative">
-                <div className="relative rounded-xl transition duration-300 delay-150 hover:cursor-pointer border-4 border-transparent hover:border-white ">
-                  <ImageCard pathBanner={movie.backdrop_path} />
-                  <div className="absolute p-2 text-white bottom-0 inset-0 bg-gradient-to-l from-transparent to-slate-950 rounded-md"></div>
-                  <div className="absolute bottom-0 left-0 text-white p-4 w-full md:w-1/2">
-                    <div className="md:text-4xl font-bold">{movie.title}</div>
-                    <div className="pl-1 text-md hidden md:flex">
-                      <p>{movie.overview}</p>
+                <Link href={`/movie/${movie.id}`}>
+                  <div className="relative rounded-xl transition duration-300 delay-150 hover:cursor-pointer border-4 border-transparent hover:border-white ">
+                    <ImageCard pathBanner={movie.backdrop_path} />
+                    <div className="absolute p-2 text-white bottom-0 inset-0 bg-gradient-to-l from-transparent to-slate-950 rounded-md"></div>
+                    <div className="absolute bottom-0 left-0 text-white p-4 w-full md:w-1/2">
+                      <div className="md:text-4xl font-bold">{movie.title}</div>
+                      <div className="pl-1 text-md hidden md:flex">
+                        <p>{movie.overview}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

@@ -2,7 +2,10 @@
 import { getMoviesDetails } from "@/api/api";
 import Container from "@/app/component/Container";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+
+
 type MovieDetails = {
   id: number;
   title: string;
@@ -13,7 +16,8 @@ type MovieDetails = {
   release_date: string;
   vote_average: string;
   runtime: number;
-}
+};
+
 const inverterOrdemData = (data: string) => {
   if (!data || typeof data !== "string") {
     return "";
@@ -52,9 +56,44 @@ const formattedVote = (vote: string): string => {
   return formattedVote;
 };
 
+
+
 function Movie({ params }: { params: any }) {
+  const textAnimation = useRef(null)
+  const imageAnimation = useRef(null)
+  
   const ImageURL = "https://image.tmdb.org/t/p/original";
   const [movie, setMovie] = useState<MovieDetails | null>(null);
+  useEffect(() => {
+    const animationText = textAnimation.current
+    const animationImagen = imageAnimation.current
+    gsap.fromTo(
+      animationText,
+      {
+        opacity: 0,
+        x: -70,
+      },
+      {
+        opacity: 100,
+        x: 0,
+        duration: 1,
+      }
+    );
+    gsap.fromTo(
+      animationImagen,
+      {
+        opacity: 0,
+        x: -70,
+      },
+      {
+        opacity: 100,
+        x: 0,
+        duration: 1,
+      }
+    );
+    
+  })
+  
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -82,7 +121,7 @@ function Movie({ params }: { params: any }) {
       <Container className="flex items-center justify-center h-full  ">
         {movie && (
           <div className="flex flex-col md:flex-row md:w-4/5 h-full  w-full items-center ">
-            <div className="w-56 md:h-96 md:w-64 min-h-96 rounded-xl relative">
+            <div className="w-56 md:h-96 md:w-64 min-h-96 rounded-xl relative opacity-0" ref={imageAnimation}>
               <Image
                 className="rounded-lg z-10"
                 src={ImageURL + movie.poster_path}
@@ -91,7 +130,7 @@ function Movie({ params }: { params: any }) {
                 objectFit="cover"
               />
             </div>
-            <div className="z-10 md:w-3/5 md:ml-10 max-h-96">
+            <div className="z-10 md:w-3/5 md:ml-10 max-h-96 opacity-0" ref={textAnimation}>
               <h1 className="text-white mb-6 text-2xl md:text-4xl font-bold mt-10 md:mt-0">
                 {movie.title}
               </h1>
@@ -99,7 +138,9 @@ function Movie({ params }: { params: any }) {
               <div className="text-sm md:mt-10 mt-8">
                 <div className="flex flex-row text-white z-10 ">
                   <h1 className="md:text-base mr-2 font-bold">Duração: </h1>
-                  <h2 className=" md:text-base ">{minutesToHours(movie.runtime)}</h2>
+                  <h2 className=" md:text-base ">
+                    {minutesToHours(movie.runtime)}
+                  </h2>
                 </div>
                 <div className="flex flex-row text-white z-10   ">
                   <h1 className="md:text-base mr-2 font-bold fir">Gênero: </h1>

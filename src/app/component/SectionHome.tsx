@@ -3,7 +3,13 @@ import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import { getAllImagens, getMoviesNow, getMoviesPopular, getMoviesTopRated, getMoviesUpcoming } from "@/api/api";
+import {
+  getAllImagens,
+  getMoviesNow,
+  getMoviesPopular,
+  getMoviesTopRated,
+  getMoviesUpcoming,
+} from "@/api/api";
 
 import {
   Parallax,
@@ -12,6 +18,7 @@ import {
   Pagination,
   Scrollbar,
 } from "swiper/modules";
+
 import ImageCard from "./ImageCard";
 import ListMoviesItem from "./ListMoviesItem";
 import Link from "next/link";
@@ -65,10 +72,10 @@ function SectionHome() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <MoviesForCategory title="Em cartaz" movies={moviesNow}/>
-          <MoviesForCategory title="Popular" movies={moviesPopular}/>
-          <MoviesForCategory title="Melhor Avaliados" movies={moviesTopRated}/>
-          <MoviesForCategory title="Em breve" movies={moviesUpcoming}/>
+          <MoviesForCategory title="Em cartaz" movies={moviesNow} />
+          <MoviesForCategory title="Popular" movies={moviesPopular} />
+          <MoviesForCategory title="Melhor Avaliados" movies={moviesTopRated} />
+          <MoviesForCategory title="Em breve" movies={moviesUpcoming} />
         </Container>
       </section>
     </>

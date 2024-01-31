@@ -37,10 +37,10 @@ function Header() {
               </h1>
             </div>
             <div className="flex gap-5 md:gap-8 ml-6 md:ml-10">
-              <LinkItem nome={"INICIO"}>
+              <LinkItem nome={"INICIO"} rota={'/'}>
                 <AiFillHome color="white" size={16} />
               </LinkItem>
-              <LinkItem nome={"PESQUISA"}>
+              <LinkItem nome={"PESQUISA"} rota="/search">
                 <FaSearch color="white" size={16} />
               </LinkItem>
               <LinkItem nome={"FILMES"} className="hidden md:flex">

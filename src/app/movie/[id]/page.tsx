@@ -1,9 +1,9 @@
 "use client";
 import { getMoviesDetails } from "@/api/api";
-import Container from "@/component/Container";
+import Container from "@/app/component/Container";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-interface MovieDetails {
+type MovieDetails = {
   id: number;
   title: string;
   poster_path: string;
@@ -14,22 +14,22 @@ interface MovieDetails {
   vote_average: string;
   runtime: number;
 }
-const inverterOrdemData = (data: string) =>{
-    if (!data || typeof data !== 'string') {
-      return "Formato de data inválido";
-    }
-    const partesData = data.split('-');
-    
-    if (partesData.length !== 3) {
-      return "Formato de data inválido";
-    }
-    const dataInvertida = partesData.reverse().join('-');
-    return dataInvertida;
+const inverterOrdemData = (data: string) => {
+  if (!data || typeof data !== "string") {
+    return "";
   }
+  const partesData = data.split("-");
+
+  if (partesData.length !== 3) {
+    return "";
+  }
+  const dataInvertida = partesData.reverse().join("-");
+  return dataInvertida;
+};
 
 function minutesToHours(minutes: number) {
   if (isNaN(minutes) || minutes < 0) {
-    return "Formato de entrada inválido";
+    return "";
   }
 
   const hours = Math.floor(minutes / 60);
@@ -45,13 +45,12 @@ function minutesToHours(minutes: number) {
 }
 
 const formattedVote = (vote: string): string => {
-    if (!vote || isNaN(parseFloat(vote))) {
-      return "";
-    }
-    const formattedVote = parseFloat(vote).toFixed(1);
-    return formattedVote;
-  };
-    
+  if (!vote || isNaN(parseFloat(vote))) {
+    return "";
+  }
+  const formattedVote = parseFloat(vote).toFixed(1);
+  return formattedVote;
+};
 
 function Movie({ params }: { params: any }) {
   const ImageURL = "https://image.tmdb.org/t/p/original";
@@ -72,18 +71,18 @@ function Movie({ params }: { params: any }) {
   }, [params.id]);
 
   return (
-    <section className="bg-blue-primary bg-cover bg-top">
+    <section className="bg-blue-primary bg-cover bg-top h-screen overflow-y-auto">
       <div
-        className="absolute inset-0 bg-cover bg-top "
+        className="absolute inset-0 bg-cover bg-top h-screen"
         style={{
           backgroundImage: `url(${ImageURL + movie?.backdrop_path})`,
           filter: "blur(10px)",
         }}
       ></div>
-      <Container className="flex items-center justify-center h-screen ">
+      <Container className="flex items-center justify-center h-full  ">
         {movie && (
-          <div className="flex flex-col md:flex-row w-4/5">
-            <div className=" h-96 w-64 rounded-xl relative">
+          <div className="flex flex-col md:flex-row md:w-4/5 h-full  w-full items-center ">
+            <div className="w-56 md:h-96 md:w-64 min-h-96 rounded-xl relative">
               <Image
                 className="rounded-lg z-10"
                 src={ImageURL + movie.poster_path}
@@ -92,32 +91,38 @@ function Movie({ params }: { params: any }) {
                 objectFit="cover"
               />
             </div>
-            <div className="z-10 w-3/5 ml-10">
-              <h1 className="text-white mb-6 text-4xl font-bold">
+            <div className="z-10 md:w-3/5 md:ml-10 max-h-96">
+              <h1 className="text-white mb-6 text-2xl md:text-4xl font-bold mt-10 md:mt-0">
                 {movie.title}
               </h1>
-              <p className="text-white text-lg">{movie.overview}</p>
-              <div className="flex flex-row text-white z-10 mt-10">
-                <h1 className="text-base mr-2 font-bold">Duração: </h1>
-                <h2 className=" text-base ">{minutesToHours(movie.runtime)}</h2>
-              </div>
-              <div className="flex flex-row text-white z-10   ">
-                <h1 className="text-base mr-2 font-bold fir">Gênero: </h1>
-                {movie.genres.map((genre: any) => (
-                  <h2 key={genre.id} className=" text-base ">
-                    {genre.name},
+              <p className="text-white text-sm md:text-lg ">{movie.overview}</p>
+              <div className="text-sm md:mt-10 mt-8">
+                <div className="flex flex-row text-white z-10 ">
+                  <h1 className="md:text-base mr-2 font-bold">Duração: </h1>
+                  <h2 className=" md:text-base ">{minutesToHours(movie.runtime)}</h2>
+                </div>
+                <div className="flex flex-row text-white z-10   ">
+                  <h1 className="md:text-base mr-2 font-bold fir">Gênero: </h1>
+                  {movie.genres.map((genre: any) => (
+                    <h2 key={genre.id} className=" md:text-base ">
+                      {genre.name},
+                    </h2>
+                  ))}
+                </div>
+                <div className="flex flex-row text-white z-10">
+                  <h1 className="md:text-base mr-2 font-bold">
+                    Data de lançamento:{" "}
+                  </h1>
+                  <h2 className=" md:text-base ">
+                    {inverterOrdemData(movie.release_date)}
                   </h2>
-                ))}
-              </div>
-              <div className="flex flex-row text-white z-10">
-                <h1 className="text-base mr-2 font-bold">
-                  Data de lançamento:{" "}
-                </h1>
-                <h2 className=" text-base ">{inverterOrdemData(movie.release_date)}</h2>
-              </div>
-              <div className="flex flex-row text-yellow-400 z-10">
-                <h1 className="text-base mr-2 font-bold">Nota: </h1>
-                <h2 className=" text-base ">{formattedVote(movie.vote_average)}</h2>
+                </div>
+                <div className="flex flex-row text-yellow-400 z-10">
+                  <h1 className="md:text-base mr-2 font-bold">Nota: </h1>
+                  <h2 className=" md:text-base ">
+                    {formattedVote(movie.vote_average)}
+                  </h2>
+                </div>
               </div>
             </div>
 

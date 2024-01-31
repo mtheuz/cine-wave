@@ -7,7 +7,7 @@ type Props = {
 function MoviesForCategory({title, movies} : Props) {
   return (
     <div>
-      <h1 className="text-white text-2xl font-bold mt-4 md:mt-8 md:ml-10">
+      <h1 className="flex w-auto text-white rounded-lg md:rounded-none bg-blue-secondary md:bg-transparent justify-center md:justify-start text-xl md:text-2xl font-bold my-2 md:my-1 md:ml-10">
         {title}
       </h1>
       <div className="flex flex-wrap items-center  justify-center">

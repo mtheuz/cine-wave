@@ -15,7 +15,7 @@ import {
 import ImageCard from "./ImageCard";
 import ListMoviesItem from "./ListMoviesItem";
 import Link from "next/link";
-import MoviesForCategory from "./moviesForCategory";
+import MoviesForCategory from "./MoviesForCategory";
 
 function SectionHome() {
   const [moviesNow, setMoviesNow] = useState([]);

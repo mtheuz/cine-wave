@@ -4,7 +4,6 @@ import Container from "./Container";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import {
-  getAllImagens,
   getMoviesNow,
   getMoviesPopular,
   getMoviesTopRated,
@@ -60,9 +59,7 @@ function SectionHome() {
     loadMovies();
   }, []);
 
-  useEffect(() => {
-    getAllImagens(moviesNow).then((response) => console.log(response.results));
-  }, [moviesNow]);
+ 
   return (
     <>
       <section className="bg-blue-primary">

@@ -154,14 +154,14 @@ function Movie({ params }: { params: any }) {
               className="z-10 md:w-3/5 md:ml-10 max-h-96 opacity-0"
               ref={textAnimation}
             >
-              <div className="flex items-center mb-6">
-                <h1 className="text-white  text-2xl md:text-4xl font-bold mt-10 md:mt-0">
+              <div className="flex mt-10 md:mt-0  md:justify-start justify-center items-center mb-6">
+                <h1 className="text-white  text-2xl md:text-4xl font-bold ">
                   {movie.title}
                 </h1>
                 <button onClick={() =>buttonCheck(movie.id, movie)}>
                   {checkButton ? (
                     <MdPlaylistAddCheckCircle
-                      size={40}
+                      size={35}
                       color="white"
                       className="ml-4"
                     />

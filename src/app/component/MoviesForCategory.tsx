@@ -6,7 +6,7 @@ type Props = {
 }
 function MoviesForCategory({title, movies} : Props) {
   return (
-    <div>
+    <div className="w-full ">
       <h1 className="flex w-auto text-white rounded-lg md:rounded-none bg-blue-secondary md:bg-transparent justify-center md:justify-start text-xl md:text-2xl font-bold my-2 md:my-1 md:ml-10">
         {title}
       </h1>

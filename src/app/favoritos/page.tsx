@@ -1,37 +1,43 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import Container from '../component/Container';
-import ListMoviesItem from '../component/ListMoviesItem';
-import MoviesForCategory from '../component/MoviesForCategory';
+"use client";
+import React, { useEffect, useState } from "react";
+import Container from "../component/Container";
+import ListMoviesItem from "../component/ListMoviesItem";
+import MoviesForCategory from "../component/MoviesForCategory";
 
 interface Movie {
-  // Defina a estrutura do seu objeto de filme
   title: string;
-  // Outros campos...
 }
 
 function Favoritos() {
-  const [localStorageItems, setLocalStorageItems] = useState<Movie[]>([]);
+  const [favoritesMovies, setfavoritesMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    // Verificar se estamos no lado do cliente antes de acessar o localStorage
-    if (typeof window !== 'undefined') {
-      const localStorageKeys = Object.keys(localStorage);
-      const items = localStorageKeys.map((key) => {
-        const storedItem =(key !== "ally-supports-cache") ? localStorage.getItem(key): null;
+    if (typeof window !== "undefined") {
+      const favoritesMoviesStorage = Object.keys(localStorage);
+      const movies = favoritesMoviesStorage.map((key) => {
+        const storedItem =
+          key !== "ally-supports-cache" ? localStorage.getItem(key) : null;
         if (storedItem) {
           return JSON.parse(storedItem) as Movie;
         }
         return {} as Movie;
       });
-      setLocalStorageItems(items);
+      setfavoritesMovies(movies);
     }
   }, []);
 
   return (
-    <section className='bg-blue-primary h-screen'>
-      <Container className='flex felx'>
-        <MoviesForCategory movies={localStorageItems} title='Favoritos'/>
+    <section className="bg-blue-primary h-screen">
+      <Container className="">
+        {favoritesMovies.length !== 0 ? (
+          <div className="flex flex-start">
+            <MoviesForCategory movies={favoritesMovies} title="Favoritos" />
+          </div>
+        ) : (
+          <div className="flex justify-center mt-56">
+            <h1 className="text-white/40 font-bold text-4xl">Nenhum Filme adicionado aos favortos</h1>
+          </div>
+        )}
       </Container>
     </section>
   );

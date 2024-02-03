@@ -39,20 +39,3 @@ export const getMoviesGeners = async (id: number) =>
   .then(response => response.json())
   .catch(err => console.error(err));
 
-export const getImagens = async (id: string) =>
-  await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, options)
-  .then(response => response.json())
-  .catch(err => console.error(err));
-
-  export const getAllImagens = async (listMovies: any) => {
-    const allImagens: any = [];
-  
-    await Promise.all(
-      listMovies.slice(0, 10).map(async (movie: any) => {
-        const Imagens: any = await getImagens(movie.id);
-        allImagens.push(Imagens);
-      })
-    );
-  
-    return allImagens;
-  };

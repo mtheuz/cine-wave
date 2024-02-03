@@ -6,7 +6,6 @@ import { AiFillHome } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { RiMovie2Fill } from "react-icons/ri";
-import { BiSolidCameraMovie } from "react-icons/bi";
 import { FaStar } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
@@ -43,13 +42,10 @@ function Header() {
               <LinkItem nome={"PESQUISA"} rota="/search">
                 <FaSearch color="white" size={16} />
               </LinkItem>
-              <LinkItem nome={"FILMES"} className="hidden md:flex">
+              <LinkItem nome={"FILMES"} className="hidden md:flex" rota="/movie">
                 <RiMovie2Fill color="white" size={18} />
               </LinkItem>
-              <LinkItem nome={"SÉRIES"} className="hidden md:flex">
-                <BiSolidCameraMovie color="white" size={18} />
-              </LinkItem>
-              <LinkItem nome={"FAVORITOS"} className="hidden md:flex">
+              <LinkItem nome={"FAVORITOS"} className="hidden md:flex" rota="/favoritos">
                 <FaStar color="white" size={18} />
               </LinkItem>
             </div>
@@ -80,13 +76,7 @@ function Header() {
               >
                 <RiMovie2Fill color="white" size={18} />
               </LinkItem>
-              <LinkItem
-                nome={"SÉRIES"}
-                className="flex md:hidden hover:bg-blue-primary"
-                mobile={true}
-              >
-                <BiSolidCameraMovie color="white" size={18} />
-              </LinkItem>
+        
               <LinkItem
                 nome={"FAVORITOS"}
                 className="flex md:hidden hover:bg-blue-primary"

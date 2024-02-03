@@ -4,7 +4,8 @@ import Container from "@/app/component/Container";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-
+import { IoIosAddCircle } from "react-icons/io";
+import { MdPlaylistAddCheckCircle } from "react-icons/md";
 
 type MovieDetails = {
   id: number;
@@ -56,17 +57,17 @@ const formattedVote = (vote: string): string => {
   return formattedVote;
 };
 
-
-
 function Movie({ params }: { params: any }) {
-  const textAnimation = useRef(null)
-  const imageAnimation = useRef(null)
-  
+  const textAnimation = useRef(null);
+  const imageAnimation = useRef(null);
+
   const ImageURL = "https://image.tmdb.org/t/p/original";
   const [movie, setMovie] = useState<MovieDetails | null>(null);
+  const [movieId, setMovieId] = useState('')
+  
   useEffect(() => {
-    const animationText = textAnimation.current
-    const animationImagen = imageAnimation.current
+    const animationText = textAnimation.current;
+    const animationImagen = imageAnimation.current;
     gsap.fromTo(
       animationText,
       {
@@ -91,16 +92,15 @@ function Movie({ params }: { params: any }) {
         duration: 1,
       }
     );
-    
-  })
-  
+  });
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const response = await getMoviesDetails(params.id);
         console.log(response);
-        setMovie(response); // Certifique-se de que response.results existe
+        setMovie(response);
+        setMovieId(response.id)
       } catch (error) {
         console.error("Erro ao obter detalhes do filme:", error);
       }
@@ -108,6 +108,23 @@ function Movie({ params }: { params: any }) {
 
     fetchMovieDetails();
   }, [params.id]);
+
+  const [checkButton, setCheckButton] = useState(false);
+  const buttonCheck = (id :any, movie: any) => {
+    checkButton ? setCheckButton(false) : setCheckButton(true);
+    if(!checkButton){
+      localStorage.setItem(id, JSON.stringify(movie));
+    }else{
+      localStorage.removeItem(id);
+    }
+  };
+  useEffect(() => {
+    const localStorageKeys = Object.keys(localStorage);
+    if (localStorageKeys.includes(movieId.toString())) {
+      setCheckButton(true);
+    }
+  }, [movieId]);
+  
 
   return (
     <section className="bg-blue-primary bg-cover bg-top h-screen overflow-y-auto">
@@ -121,7 +138,10 @@ function Movie({ params }: { params: any }) {
       <Container className="flex items-center justify-center h-full  ">
         {movie && (
           <div className="flex flex-col md:flex-row md:w-4/5 h-full  w-full items-center ">
-            <div className="w-56 md:h-96 md:w-64 min-h-96 rounded-xl relative opacity-0" ref={imageAnimation}>
+            <div
+              className="w-56 md:h-96 md:w-64 min-h-96 rounded-xl relative opacity-0"
+              ref={imageAnimation}
+            >
               <Image
                 className="rounded-lg z-10"
                 src={ImageURL + movie.poster_path}
@@ -130,10 +150,27 @@ function Movie({ params }: { params: any }) {
                 objectFit="cover"
               />
             </div>
-            <div className="z-10 md:w-3/5 md:ml-10 max-h-96 opacity-0" ref={textAnimation}>
-              <h1 className="text-white mb-6 text-2xl md:text-4xl font-bold mt-10 md:mt-0">
-                {movie.title}
-              </h1>
+            <div
+              className="z-10 md:w-3/5 md:ml-10 max-h-96 opacity-0"
+              ref={textAnimation}
+            >
+              <div className="flex items-center mb-6">
+                <h1 className="text-white  text-2xl md:text-4xl font-bold mt-10 md:mt-0">
+                  {movie.title}
+                </h1>
+                <button onClick={() =>buttonCheck(movie.id, movie)}>
+                  {checkButton ? (
+                    <MdPlaylistAddCheckCircle
+                      size={40}
+                      color="white"
+                      className="ml-4"
+                    />
+                  ) : (
+                    <IoIosAddCircle size={40} className="ml-4" />
+                  )}
+                </button>
+              </div>
+
               <p className="text-white text-sm md:text-lg ">{movie.overview}</p>
               <div className="text-sm md:mt-10 mt-8">
                 <div className="flex flex-row text-white z-10 ">
@@ -167,7 +204,7 @@ function Movie({ params }: { params: any }) {
               </div>
             </div>
 
-            <div className="absolute p-2 text-white text-sm bottom-0 inset-0 bg-gradient-to-b from-transparent to-slate-950 rounded-md"></div>
+            <div className="absolute bottom-0 inset-0 bg-gradient-to-b from-transparent to-slate-950/60 rounded-md"></div>
           </div>
         )}
       </Container>

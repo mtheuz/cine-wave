@@ -33,6 +33,11 @@ export const getMoviesDetails = async (id: number) =>
   await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
   .then(response => response.json())
   .catch(err => console.error(err));
+  
+export const getMoviesGeners = async (id: number) =>
+  await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`, options)
+  .then(response => response.json())
+  .catch(err => console.error(err));
 
 export const getImagens = async (id: string) =>
   await fetch(`https://api.themoviedb.org/3/movie/${id}/images`, options)

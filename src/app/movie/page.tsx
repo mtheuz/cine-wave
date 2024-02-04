@@ -13,10 +13,10 @@ function MoviesALL() {
     const [moviesAdventure, setMoviesAdventure] = useState([]);
     const [allImagens, setAllImagens] = useState([]);
     useEffect(() => {
-      getMoviesGeners(28).then((response) => setMoviesAction(response.results));
-      getMoviesGeners(12).then((response) => setMoviesAdventure(response.results));
-      getMoviesPopular().then((response) => setMoiesPopular(response.results));
-      getMoviesTopRated().then((response) => setmoviesTopRated(response.results));
+      getMoviesGeners(28,1).then((response) => setMoviesAction(response.results));
+      getMoviesGeners(12,1).then((response) => setMoviesAdventure(response.results));
+      getMoviesPopular(1).then((response) => setMoiesPopular(response.results));
+      getMoviesTopRated(1).then((response) => setmoviesTopRated(response.results));
       getMoviesUpcoming().then((response) => setmoviesUpcoming(response.results));
     }, []);
   return (

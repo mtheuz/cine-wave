@@ -40,10 +40,10 @@ function SectionHome() {
         const moviesNowResponse = await getMoviesNow();
         setMoviesNow(moviesNowResponse.results);
 
-        const moviesPopularResponse = await getMoviesPopular();
+        const moviesPopularResponse = await getMoviesPopular(1);
         setMoviesPopular(moviesPopularResponse.results);
 
-        const moviesTopRatedResponse = await getMoviesTopRated();
+        const moviesTopRatedResponse = await getMoviesTopRated(1);
         setMoviesTopRated(moviesTopRatedResponse.results);
 
         const moviesUpcomingResponse = await getMoviesUpcoming();

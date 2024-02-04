@@ -14,13 +14,13 @@ export const getMoviesNow = async () =>
   .then(response => response.json())
   .catch(err => console.error(err));
 
-export const getMoviesPopular = async () =>
-  await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1', options)
+export const getMoviesPopular = async (page: number) =>
+  await fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${page}`, options)
   .then(response => response.json())
   .catch(err => console.error(err));
 
-export const getMoviesTopRated = async () =>
-  await fetch('https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&page=1', options)
+export const getMoviesTopRated = async (page: number) =>
+  await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&page=${page}`, options)
   .then(response => response.json())
   .catch(err => console.error(err));
 
@@ -33,9 +33,14 @@ export const getMoviesDetails = async (id: number) =>
   await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
   .then(response => response.json())
   .catch(err => console.error(err));
+
+export const getMoviesAllGerners = async () =>
+fetch('https://api.themoviedb.org/3/genre/movie/list?language=pt', options)
+  .then(response => response.json())
+  .catch(err => console.error(err));
   
-export const getMoviesGeners = async (id: number) =>
-  await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`, options)
+export const getMoviesGeners = async (id: number, page: number) =>
+  await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=pt-BR&page=${page}&sort_by=popularity.desc&with_genres=${id}`, options)
   .then(response => response.json())
   .catch(err => console.error(err));
 

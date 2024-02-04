@@ -11,7 +11,7 @@ function MoviesForCategory({title, movies} : Props) {
         {title}
       </h1>
       <div className="flex flex-wrap items-center  justify-center">
-        {movies.slice(0, 18).map((movie: any, index: number) => (
+        {movies.map((movie: any, index: number) => (
           <ListMoviesItem key={index} movie={movie} />
         ))}
       </div>

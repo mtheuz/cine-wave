@@ -3,7 +3,7 @@ import ReactLoading from "react-loading";
 import Container from './Container';
 function Loading() {
   return (
-    <Container>
+    <Container className='max-h-[1240px]'>
     <div className='flex mt-56 justify-center h-screen overflow-y-hidden'><ReactLoading type='spin' color="white" /></div>
 
     </Container>

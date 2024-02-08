@@ -44,3 +44,8 @@ export const getMoviesGeners = async (id: number, page: number) =>
   .then(response => response.json())
   .catch(err => console.error(err));
 
+export const getSearch = async (query: string, page:number) =>
+  await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&language=pt-BR&page=${page}`, options)
+  .then(response => response.json())
+  .catch(err => console.error(err));
+

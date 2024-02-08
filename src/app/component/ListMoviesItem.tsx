@@ -10,7 +10,7 @@ function ListMoviesItem({ movie }: any) {
       className="rounded-lg w-full"
         src={ImageURL + movie.poster_path}
         alt="poster"
-        layout="fill"
+        fill={true}
 
       />
       <h1 className="absolute p-2 text-white text-xs md:text-sm bottom-0 z-10">{movie.title}</h1>

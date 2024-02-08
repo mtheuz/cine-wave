@@ -9,6 +9,7 @@ import { RiMovie2Fill } from "react-icons/ri";
 import { FaStar } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
+import { FaHandHoldingHeart } from "react-icons/fa";
 import LinkItem from "./LinkItem";
 
 function Header() {
@@ -48,6 +49,9 @@ function Header() {
               <LinkItem nome={"FAVORITOS"} className="hidden md:flex" rota="/favoritos">
                 <FaStar color="white" size={18} />
               </LinkItem>
+              <LinkItem nome={"ME INDIQUE UM FILME"} className="hidden md:flex" rota="/indication">
+                <FaHandHoldingHeart color="white" size={18} />
+              </LinkItem>
             </div>
           </div>
           <FaUserCircle
@@ -70,8 +74,15 @@ function Header() {
           <nav className="-mt-4">
             <nav className="w-full bg-font-logo">
               <LinkItem
-                nome={"FILMES"}
+                nome={"USER"}
                 className="flex md:hidden hover:bg-blue-primary pt-6"
+                mobile={true}
+              >
+                <FaUserCircle color="white" size={18} />
+              </LinkItem>
+              <LinkItem
+                nome={"FILMES"}
+                className="flex md:hidden hover:bg-blue-primary"
                 mobile={true}
               >
                 <RiMovie2Fill color="white" size={18} />
@@ -83,6 +94,14 @@ function Header() {
                 mobile={true}
               >
                 <FaStar color="white" size={18} />
+              </LinkItem>
+
+              <LinkItem
+                nome={"ME INDIQUE UM FILME"}
+                className="flex md:hidden hover:bg-blue-primary"
+                mobile={true}
+              >
+                <FaHandHoldingHeart color="white" size={18} />
               </LinkItem>
             </nav>
           </nav>

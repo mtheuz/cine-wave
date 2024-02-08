@@ -16,12 +16,12 @@ function LinkItem({nome,children, className, mobile,rota = '/'} : Props) {
     let DesktopMenu = "text-white hidden md:flex"
     const responsive = mobile ? MobileMenu : DesktopMenu
   return (
-    <div className={clasNameFinal}>
+    <Link href={rota} className={clasNameFinal}>
       {children}
-      <Link href={rota} className={responsive}>
+      <div  className={responsive}>
         {nome}
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

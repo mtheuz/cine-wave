@@ -84,6 +84,7 @@ function Header() {
                 nome={"FILMES"}
                 className="flex md:hidden hover:bg-blue-primary"
                 mobile={true}
+                rota="/movie"
               >
                 <RiMovie2Fill color="white" size={18} />
               </LinkItem>
@@ -92,6 +93,7 @@ function Header() {
                 nome={"FAVORITOS"}
                 className="flex md:hidden hover:bg-blue-primary"
                 mobile={true}
+                rota="/favoritos"
               >
                 <FaStar color="white" size={18} />
               </LinkItem>
@@ -100,6 +102,7 @@ function Header() {
                 nome={"ME INDIQUE UM FILME"}
                 className="flex md:hidden hover:bg-blue-primary"
                 mobile={true}
+                rota="/indication"
               >
                 <FaHandHoldingHeart color="white" size={18} />
               </LinkItem>

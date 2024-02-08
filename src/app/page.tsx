@@ -101,13 +101,13 @@ function SectionHome() {
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <MoviesForCategory title="Em cartaz" movies={moviesNow} />
-              <MoviesForCategory title="Popular" movies={moviesPopular} />
+              <MoviesForCategory title="Em cartaz" movies={moviesNow.slice(0,18)} />
+              <MoviesForCategory title="Popular" movies={moviesPopular.slice(0,18)} />
               <MoviesForCategory
                 title="Melhor Avaliados"
-                movies={moviesTopRated}
+                movies={moviesTopRated.slice(0,18)}
               />
-              <MoviesForCategory title="Em breve" movies={moviesUpcoming} />
+              <MoviesForCategory title="Em breve" movies={moviesUpcoming.slice(0,18)} />
             </>
           )}
         </Container>

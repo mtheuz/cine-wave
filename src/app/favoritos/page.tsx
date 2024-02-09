@@ -33,7 +33,7 @@ function Favoritos() {
   };
 
   return (
-    <section className="bg-blue-primary h-screen">
+    <section className="bg-blue-primary min-h-screen">
       <Container className="">
         {favoritesMovies.length !== 0 ? (
           <div className="flex flex-start items-center">

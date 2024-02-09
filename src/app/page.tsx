@@ -29,7 +29,6 @@ function SectionHome() {
   const [moviesTopRated, setMoviesTopRated] = useState([]);
   const [moviesUpcoming, setMoviesUpcoming] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [allImagens, setAllImagens] = useState([]);
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -38,6 +37,7 @@ function SectionHome() {
 
         const moviesNowResponse = await getMoviesNow();
         setMoviesNow(moviesNowResponse.results);
+
 
         const moviesPopularResponse = await getMoviesPopular(1);
         setMoviesPopular(moviesPopularResponse.results);
@@ -60,7 +60,7 @@ function SectionHome() {
 
   return (
     <>
-      <section className="bg-blue-primary min-h-[1400px]">
+      <section className="bg-blue-primary min-h-screen">
         <Container>
           {loading ? (
             <Loading />

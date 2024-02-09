@@ -8,9 +8,9 @@ import {
   getSearch,
 } from "@/api/api";
 import MoviesForCategory from "../component/MoviesForCategory";
-import Loading from "../component/Loading";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
+import Loading from "../component/Loading";
 
 function Search() {
   const [moviesTopRated, setmoviesTopRated] = useState<any>([]);
@@ -22,6 +22,7 @@ function Search() {
   const genresContainerRef = useRef(null);
   const [searchName, setSearchName] = useState("");
   const [search, setSearch] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getMoviesAllGerners().then((response) => setAllGeners(response.genres));
@@ -29,30 +30,23 @@ function Search() {
   useEffect(() => {
     if (page !== 0 && genre === 0 && searchName == "") {
       getMoviesTopRated(page).then((response) => {
-        console.log(page)
-
-        console.log(response);
-
         if (page <= response.total_pages)
           setmoviesTopRated([...moviesTopRated, ...response.results]);
+        setLoading(false);
       });
     } else if (genre !== 0 && searchName == "") {
       setGenreCategory([]);
       getMoviesGeners(genre, page).then((response) => {
-        console.log(page)
-        console.log(response);
-
         if (page <= response.total_pages)
           setGenreCategory([...genreCategory, ...response.results]);
+        setLoading(false);
       });
     } else {
       setSearch([]);
       getSearch(searchName, page).then((response) => {
-        console.log(page)
-
-        console.log(response);
         if (page <= response.total_pages)
           setSearch([...search, ...response.results]);
+        setLoading(false);
       });
     }
   }, [genre, page, searchName]);
@@ -74,10 +68,10 @@ function Search() {
   }, [moviesInifinite]);
 
   const handleScroll = (direction: string) => {
-    const container = genresContainerRef.current;
+    const container: any = genresContainerRef.current;
 
     if (container) {
-      const scrollAmount = 2000;
+      const scrollAmount = 500;
       if (direction === "left") {
         container.scrollLeft -= scrollAmount;
       } else if (direction === "right") {
@@ -89,7 +83,7 @@ function Search() {
     const inputValue = event.target.value;
     setSearchName(inputValue);
     setGenre(0);
-    setPage(1)
+    setPage(1);
     console.log("Valor do input:", inputValue);
   };
   const moviesToShow =
@@ -99,9 +93,9 @@ function Search() {
       ? moviesTopRated
       : genreCategory;
   return (
-    <section className="bg-blue-primary min-h-[1400px]">
-      <Container>
-        <div className="flex mb-4">
+    <section className="bg-blue-primary min-h-screen scrollbar-none">
+      <Container >
+        <div className="flex mb-4 ">
           <input
             className="w-full h-12 md:h-16 p-4 text-white text-lg md:text-2xl rounded-lg bg-blue-950"
             type="text"
@@ -130,8 +124,11 @@ function Search() {
             allGeners.map((genero: any, index) => (
               <div className="" key={index}>
                 <button
-                  onClick={() => {setGenre(genero.id); setPage(1)} }
-                  className="p-2 py-2 text-sm md:text-lg md:py-8 ml-2 w-32 md:w-40 text-white bg-blue-900/80  rounded-xl transition duration-300 delay-150  hover:cursor-pointer border-4 border-transparent hover:border-white"
+                  onClick={() => {
+                    setGenre(genero.id);
+                    setPage(1);
+                  }}
+                  className="p-2 py-2 text-sm md:text-lg md:py-4 ml-2 w-32 md:w-40 text-white bg-blue-900/80  rounded-xl transition duration-300 delay-150  hover:cursor-pointer border-4 border-transparent hover:border-white"
                 >
                   {genero.name}
                 </button>
@@ -139,16 +136,20 @@ function Search() {
             ))}
           <div className="scroll-buttons"></div>
         </div>
-        <MoviesForCategory
-          title="Explore"
-          movies={
-            genre != 0
-              ? genreCategory
-              : searchName !== ""
-              ? search
-              : moviesTopRated
-          }
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <MoviesForCategory
+            title="Explore"
+            movies={
+              genre != 0
+                ? genreCategory
+                : searchName !== ""
+                ? search
+                : moviesTopRated
+            }
+          />
+        )}
       </Container>
       <div ref={moviesInifinite}></div>
     </section>

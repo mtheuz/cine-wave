@@ -24,7 +24,7 @@ const inverterOrdemData = (data: string) => {
     return "";
   }
   const partesData = data.split("-");
-
+  
   if (partesData.length !== 3) {
     return "";
   }
@@ -36,21 +36,21 @@ function minutesToHours(minutes: number) {
   if (isNaN(minutes) || minutes < 0) {
     return "";
   }
-
+  
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
-
+  
   const formattedHours = hours > 0 ? `${hours}h` : "";
   const formattedMinutes = remainingMinutes > 0 ? `${remainingMinutes}min` : "";
   return (
     formattedHours +
     (formattedHours && formattedMinutes ? " " : "") +
     formattedMinutes
-  );
-}
+    );
+  }
 
-const formattedVote = (vote: string): string => {
-  if (!vote || isNaN(parseFloat(vote))) {
+  const formattedVote = (vote: string): string => {
+    if (!vote || isNaN(parseFloat(vote))) {
     return "";
   }
   const formattedVote = parseFloat(vote).toFixed(1);
@@ -58,9 +58,11 @@ const formattedVote = (vote: string): string => {
 };
 
 function Movie({ params }: { params: any }) {
+  const [loading, setLoading] = useState(true)
+  const [checkButton, setCheckButton] = useState(false);
   const textAnimation = useRef(null);
   const imageAnimation = useRef(null);
-
+  
   const ImageURL = "https://image.tmdb.org/t/p/original";
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [movieId, setMovieId] = useState('')
@@ -79,9 +81,9 @@ function Movie({ params }: { params: any }) {
         x: 0,
         duration: 1,
       }
-    );
-    gsap.fromTo(
-      animationImagen,
+      );
+      gsap.fromTo(
+        animationImagen,
       {
         opacity: 0,
         x: -70,
@@ -93,23 +95,22 @@ function Movie({ params }: { params: any }) {
       }
     );
   });
-
+  
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const response = await getMoviesDetails(params.id);
-        console.log(response);
         setMovie(response);
         setMovieId(response.id)
+        setLoading(false)
       } catch (error) {
         console.error("Erro ao obter detalhes do filme:", error);
       }
     };
-
+    
     fetchMovieDetails();
   }, [params.id]);
 
-  const [checkButton, setCheckButton] = useState(false);
   const buttonCheck = (id :any, movie: any) => {
     checkButton ? setCheckButton(false) : setCheckButton(true);
     if(!checkButton){
@@ -141,14 +142,14 @@ function Movie({ params }: { params: any }) {
             <div
               className="w-56 md:h-96 md:w-64 min-h-96 rounded-xl relative opacity-0"
               ref={imageAnimation}
-            >
+              >
               <Image
                 className="rounded-lg z-10"
                 src={ImageURL + movie.poster_path}
                 alt="poster"
                 layout="fill"
                 objectFit="cover"
-              />
+                />
             </div>
             <div
               className="z-10 md:w-3/5 md:ml-10 max-h-96 opacity-0"

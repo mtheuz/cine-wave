@@ -128,7 +128,7 @@ function Movie({ params }: { params: any }) {
   
 
   return (
-    <section className="bg-blue-primary bg-cover bg-top h-screen overflow-y-auto">
+    <section className="bg-blue-primary  h-screen overflow-y-auto">
       <div
         className="absolute inset-0 bg-cover bg-top h-screen"
         style={{
@@ -205,10 +205,11 @@ function Movie({ params }: { params: any }) {
               </div>
             </div>
 
-            <div className="absolute bottom-0 inset-0 bg-gradient-to-b from-transparent to-slate-950/60 rounded-md"></div>
           </div>
         )}
       </Container>
+      <div className="absolute h-screen bottom-0 inset-0 bg-gradient-to-b from-transparent to-slate-950/60 rounded-md"></div>
+
     </section>
   );
 }

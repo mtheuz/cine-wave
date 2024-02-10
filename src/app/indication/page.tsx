@@ -42,7 +42,7 @@ function Indication() {
   return (
     <section className="flex bg-blue-primary min-h-screen justify-center items-center relative">
       <div
-        className="absolute inset-0 bg-cover bg-top h-screen "
+        className="absolute inset-0 bg-cover bg-top h-full "
         style={{
           backgroundImage: `url(${
             isFlipped ? ImageURL + movie?.backdrop_path : null
@@ -52,7 +52,7 @@ function Indication() {
       ></div>
       <Container className="flex flex-col w-full justify-center items-center">
         <h1
-          className={`text-white p-5 min-h-4 text-4xl font-bold z-10 ${
+          className={`text-white p-5 min-h-4 text-xl md:text-4xl font-bold z-10 ${
             !isFlipped ? "hidden" : ""
           }`}
         >
@@ -60,18 +60,18 @@ function Indication() {
         </h1>
 
         <motion.div
-          className="rounded-lg shadow-lg cursor-pointer"
+          className="rounded-lg shadow-lg cursor-pointer z-20"
           initial={{ rotateY: 0 }}
           animate={{ rotateY: isFlipped ? 1460 : 0 }}
           transition={{ duration: 4 }}
         >
           <Link
             href={`/movie/${movie?.id}`}
-            className="flex  justify-center items-center w-64 h-96 bg-gradient-to-b border-2 border-black from-slate-600 to-slate-800 rounded-xl"
+            className="flex  justify-center items-center w-64 h-96 bg-gradient-to-b border-2 border-black from-slate-600 to-slate-800 rounded-xl "
           >
             {isFlipped ? (
               <Image
-                className="rounded-lg z-20"
+                className="rounded-lg "
                 src={ImageURL + movie?.poster_path}
                 alt="poster"
                 layout="fill"
@@ -85,7 +85,7 @@ function Indication() {
 
         <button
           onClick={handleFlip}
-          className="p-5 w-56 mt-10 bg-gradient-to-b hover:bg-gradient-to-t border-2  from-blue-400 to-blue-800 rounded-xl text-white  font-bold z-10"
+          className="p-2 md:p-5 md:w-56 w-40 mt-10 bg-gradient-to-b hover:bg-gradient-to-t border-2  from-blue-400 to-blue-800 rounded-xl text-white  font-bold z-10"
         >
           {!isFlipped?<h1>Me indique um filme</h1>  : <h1>Voltar</h1>}
           

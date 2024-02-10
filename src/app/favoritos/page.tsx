@@ -41,10 +41,10 @@ function Favoritos() {
               <div>
                 {favoritesMovies.length != 0 ? (
                   <button
-                    className="p-2  bg-blue-900  border-2 border-black  rounded-xl text-white  font-bold"
+                    className="p-2 text-xs md:texl-xl bg-blue-900  border-2 border-black  rounded-xl text-white  font-bold"
                     onClick={clearAllFavorites}
                   >
-                    Limpar favorios
+                    <h1>Limpar favorios</h1>
                   </button>
                 ) : null}
               </div>

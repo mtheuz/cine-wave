@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/component/Header";
+import Footer from "./component/Footer";
 
 
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={josefinSans.className}>
       <Header/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

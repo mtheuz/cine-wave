@@ -14,7 +14,7 @@ function MoviesForCategory({title, movies, children} : Props) {
         </h1>
         {children}
       </div>
-      <div className="flex flex-wrap items-center  justify-center">
+      <div className="flex flex-wrap items-center mt-3 md:mt-1 justify-center">
         {movies.map((movie: any, index: number) => (
           <ListMoviesItem key={index} movie={movie} />
         ))}

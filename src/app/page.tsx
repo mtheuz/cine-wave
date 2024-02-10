@@ -22,6 +22,7 @@ import Loading from "./component/Loading";
 import Link from "next/link";
 import ImageCard from "./component/ImageCard";
 import MoviesForCategory from "./component/MoviesForCategory";
+import Footer from "./component/Footer";
 
 function SectionHome() {
   const [moviesNow, setMoviesNow] = useState([]);
@@ -110,6 +111,7 @@ function SectionHome() {
               <MoviesForCategory title="Em breve" movies={moviesUpcoming.slice(0,18)} />
             </>
           )}
+   
         </Container>
       </section>
     </>

@@ -5,7 +5,8 @@ import React from "react";
 function ListMoviesItem({ movie }: any) {
   const ImageURL = "https://image.tmdb.org/t/p/original";
   return (
-    <Link href={`/movie/${movie.id}`} className="relative m-1 md:m-4 w-40 h-52 md:w-52 md:h-72 rounded-xl transition duration-300 delay-150 hover:-translate-y-3 hover:cursor-pointer border-4 border-transparent hover:border-white ">
+    <Link href={`/movie/${movie.id}`} className="relative m-1 md:m-4 w-40 h-64 md:w-52 md:h-72 rounded-xl transition duration-300 delay-150 hover:-translate-y-3 hover:cursor-pointer border-4 border-transparent hover:border-white ">
+
       <Image
       className="rounded-lg w-full"
         src={ImageURL + movie.poster_path}

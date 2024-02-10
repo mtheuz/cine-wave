@@ -23,7 +23,7 @@ function Header() {
   };
   return (
     <>
-      <header className="fixed w-full z-20">
+      <header className="fixed w-full z-50">
         <nav className="flex px-4 justify-between bg-blue-secondary  h-20   drop-shadow-xl items-center">
           <div className="flex items-center">
             <div className="flex items-center ">
@@ -71,41 +71,49 @@ function Header() {
           </button>
         </nav>
         {isVisible ? (
-          <nav className="-mt-4">
-            <nav className="w-full bg-font-logo">
-              <LinkItem
-                nome={"USER"}
-                className="flex md:hidden hover:bg-blue-primary pt-6"
-                mobile={true}
-              >
-                <FaUserCircle color="white" size={18} />
-              </LinkItem>
-              <LinkItem
-                nome={"FILMES"}
-                className="flex md:hidden hover:bg-blue-primary"
-                mobile={true}
-                rota="/movie"
-              >
-                <RiMovie2Fill color="white" size={18} />
-              </LinkItem>
+          <nav className="-mt-4 ">
+            <nav className="w-full bg-font-logo ">
+              <div onClick={() => isActiveclick(isVisible)}>
+                <LinkItem
+                  nome={"USER"}
+                  className="flex md:hidden hover:bg-blue-primary pt-6"
+                  mobile={true}
+                >
+                  <FaUserCircle color="white" size={18} />
+                </LinkItem>
+              </div>
+              <div onClick={() => isActiveclick(isVisible)}>
+                <LinkItem
+                  nome={"FILMES"}
+                  className="flex md:hidden hover:bg-blue-primary"
+                  mobile={true}
+                  rota="/movie"
+                >
+                  <RiMovie2Fill color="white" size={18} />
+                </LinkItem>
+              </div>
         
-              <LinkItem
-                nome={"FAVORITOS"}
-                className="flex md:hidden hover:bg-blue-primary"
-                mobile={true}
-                rota="/favoritos"
-              >
-                <FaStar color="white" size={18} />
-              </LinkItem>
+              <div onClick={() => isActiveclick(isVisible)}>
+                <LinkItem
+                  nome={"FAVORITOS"}
+                  className="flex md:hidden hover:bg-blue-primary"
+                  mobile={true}
+                  rota="/favoritos"
+                >
+                  <FaStar color="white" size={18} />
+                </LinkItem>
+              </div>
 
-              <LinkItem
-                nome={"ME INDIQUE UM FILME"}
-                className="flex md:hidden hover:bg-blue-primary"
-                mobile={true}
-                rota="/indication"
-              >
-                <FaHandHoldingHeart color="white" size={18} />
-              </LinkItem>
+              <div onClick={() => isActiveclick(isVisible)}>
+                <LinkItem
+                  nome={"ME INDIQUE UM FILME"}
+                  className="flex md:hidden hover:bg-blue-primary"
+                  mobile={true}
+                  rota="/indication"
+                >
+                  <FaHandHoldingHeart color="white" size={18} />
+                </LinkItem>
+              </div>
             </nav>
           </nav>
         ) : (

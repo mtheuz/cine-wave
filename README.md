@@ -21,5 +21,5 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 Esse projeto foi feito consumindo a api do <a href="https://www.themoviedb.org/">TMDB Api</a>, uma base de dados que com ela é possivel obter dados sobre filmes e seriados. O projeto tem um design responsivo feito sendo pensado tanto para mobile como para Desktop. Com esse sistema é capaz de obter listagem de filmes, fazer pesquisas, favoritar filmes para vizulizar mais tarde (inicialmente os dados estão sendo mantido no localhost), e também indicar um filme aleatoriamente. 
 
-Para acessar <a href="https://https://cine-wave.vercel.app//">clique aqui </a>
+Para acessar <a href="https://cine-wave.vercel.app/" target="blank">clique aqui </a>
 

@@ -11,6 +11,9 @@ const josefinSans = Josefin_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Cine Wave",
   description: "Cine Wave",
+  icons: {
+    icon: '/favicon.ico', 
+  },
 };
 
 export default function RootLayout({

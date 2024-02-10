@@ -125,8 +125,10 @@ function Search() {
               <div className="" key={index}>
                 <button
                   onClick={() => {
+                    setGenreCategory([]);
                     setGenre(genero.id);
                     setPage(1);
+                
                   }}
                   className="p-2 py-2 text-sm md:text-lg md:py-4 ml-2 w-32 md:w-40 text-white bg-blue-900/80  rounded-xl transition duration-300 delay-150  hover:cursor-pointer border-4 border-transparent hover:border-white"
                 >
